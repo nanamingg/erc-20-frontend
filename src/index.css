@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "JeonjuCraftMjB";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/JeonjuCraftMjB.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+.font-jj {
+  font-family: "JeonjuCraftMjB";
+}
