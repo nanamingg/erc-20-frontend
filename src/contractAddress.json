@@ -83,5 +83,15 @@
     "owner": "박지환",
     "walletAccount": "0x6c25cf6B6F2635dB80e32bB31e6E6131d3042382",
     "address": "0xA0Dbd827Fa2783CB9dBD9D202Ed6Cc7d2bE61D6F"
+  },
+  {
+    "owner": "심재원",
+    "walletAccount": "0xF4e7CDD73a4a8e9c7D270A0b728dba288Bc1D3DD",
+    "address": "0xC6E5042F2706EF184Df2558e0EA2e0219Ba359AD"
+  },
+  {
+    "owner": "배효영",
+    "walletAccount": "0xA5c398700a522D5e41EEDd924dc1CB489EfC096E",
+    "address": "0x374cE9cd533e8BD6EFD5F24B90BA33C9E77E7309"
   }
 ]

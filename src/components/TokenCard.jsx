@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 
 import mintTokenAbi from "../mintTokenAbi.json";
+import contractAddress from "../contractAddress.json";
+import OptionCard from "./OptionCard";
 
 const TokenCard = ({ account, web3, address, owner, walletAccount }) => {
   const [name, setName] = useState("TOKEN");
@@ -34,8 +36,6 @@ const TokenCard = ({ account, web3, address, owner, walletAccount }) => {
     try {
       const response = await contract.methods.balanceOf(account).call();
 
-      console.log(typeof web3.utils.fromWei(response, "ether"));
-
       setBalance(Number(web3.utils.fromWei(response, "ether")));
     } catch (error) {
       console.log(error);
@@ -52,9 +52,8 @@ const TokenCard = ({ account, web3, address, owner, walletAccount }) => {
           from: account,
         });
 
-      getBalanceOf(); // 잔액갱신
+      getBalanceOf();
 
-      setInputAccount("");
       setInputValue("0");
       alert("성공적으로 토큰을 전송하였습니다.");
     } catch (error) {
@@ -84,6 +83,8 @@ const TokenCard = ({ account, web3, address, owner, walletAccount }) => {
     setContract(new web3.eth.Contract(mintTokenAbi, address));
   }, [web3]);
 
+  useEffect(() => console.log(inputAccount), [inputAccount]);
+
   return (
     <li className="flex flex-col gap-1 mt-4">
       <div>
@@ -92,25 +93,33 @@ const TokenCard = ({ account, web3, address, owner, walletAccount }) => {
         </button>
         님이 발행한 코인입니다.
       </div>
-      <div className="bg-blue-100 w-96 flex">
-        <span className=" bg-gray-100">{name}</span>
-        <br></br>
-        <span className=" bg-gray-300">{balance.toFixed(4)}</span>
-        <span className=" bg-gray-100">{symbol}</span>
+      <div className="flex">
+        <span className="bg-gray-100 w-48">{name}</span>
+        <span className="bg-gray-300 w-60">{balance.toFixed(4)}</span>
+        <span className="bg-gray-100 w-20">{symbol}</span>
         <form className="flex" onSubmit={onSubmitSend}>
-          <input
-            className="bg-red-100"
-            type="text"
+          <select
             value={inputAccount}
             onChange={(e) => setInputAccount(e.target.value)}
-          />
+          >
+            <option value=""></option>
+            {contractAddress.map((v, i) => (
+              <OptionCard
+                key={i}
+                owner={v.owner}
+                walletAccount={v.walletAccount}
+              />
+            ))}
+          </select>
           <input
-            className="bg-blue-100"
+            className="bg-gray-100 w-32"
             type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
           />
-          <button type="submit">Send</button>
+          <button className="bg-gray-300" type="submit">
+            Send
+          </button>
         </form>
       </div>
     </li>
