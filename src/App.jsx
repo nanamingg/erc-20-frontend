@@ -1,4 +1,4 @@
-import { useSDK } from "@metamask/sdk-react";
+import { useSDK } from "@metamask/sdk-react"; //메타마스크 연결
 import { useEffect, useState } from "react";
 import Web3 from "web3";
 import TokenCard from "./components/TokenCard";
@@ -9,7 +9,7 @@ const App = () => {
   const [account, setAccount] = useState("");
   const [web3, setWeb3] = useState();
 
-  const { sdk, provider } = useSDK();
+  const { sdk, provider } = useSDK(); //메마 연결
 
   const onClickMetaMask = async () => {
     try {
